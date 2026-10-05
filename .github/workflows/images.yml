@@ -1,0 +1,34 @@
+name: Détecter les images des articles
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lire les pages
+        run: |
+          UA="Mozilla/5.0"
+          {
+          for p in /fr/news/cat3_realisations /fr/news/cat1_actualites; do
+            echo "===== LISTE $p ====="
+            curl -fsSL -A "$UA" "https://www.mecalab.be$p" -o l.html
+            grep -oiE '<a[^>]+href="[^"]*/fr/news/[0-9]+_[^"]*"' l.html | head -5
+            echo "-- images (src / data-src / background) --"
+            grep -oiE '(src|data-src|data-original|srcset)="[^"]*"|background(-image)?:[^;"]*url\([^)]*\)' l.html | grep -viE 'logo|icon|flag|\.svg' | head -25
+            echo "-- extrait autour du 1er article --"
+            awk '/\/fr\/news\/[0-9]+_/{c=1} c&&n<40{print;n++}' l.html | sed 's/^[ \t]*//' | cut -c1-220
+          done
+          for a in $(curl -fsSL -A "$UA" https://www.mecalab.be/fr/news/cat3_realisations | grep -oE '/fr/news/[0-9]+_[a-z0-9-]+' | sort -u -t_ -k1,1 | head -2) /fr/news/32_mecalab-obtient-la-medaille-dor-ecovadis-2026; do
+            echo "===== ARTICLE $a ====="
+            curl -fsSL -A "$UA" "https://www.mecalab.be$a" -o a.html
+            grep -oiE '<meta[^>]+(og:image|twitter:image)[^>]*>' a.html
+            grep -oiE '(src|data-src|data-original|srcset|href)="[^"]*\.(jpe?g|png|webp)[^"]*"|url\([^)]*\.(jpe?g|png|webp)[^)]*\)' a.html | grep -viE 'logo|icon|flag' | head -20
+          done
+          } > images.txt 2>&1
+          cat images.txt
+      - name: Enregistrer
+        run: |
+          git config user.name "banniere-bot"; git config user.email "banniere-bot@users.noreply.github.com"
+          git add images.txt; git commit -m "Images du site (temporaire)"; git push
