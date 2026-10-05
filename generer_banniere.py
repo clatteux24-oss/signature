@@ -31,11 +31,20 @@ def get(url):
 def derniere_news():
     articles = {}
     categorie = {}
+    images = {}
     for liste in LISTES:
-        for m in re.finditer(r'/fr/news/(\d+)_([a-z0-9\-]+)', get(SITE + liste)):
+        page_liste = get(SITE + liste)
+        for m in re.finditer(r'/fr/news/(\d+)_([a-z0-9\-]+)', page_liste):
             articles[int(m.group(1))] = f'{SITE}/fr/news/{m.group(1)}_{m.group(2)}'
             if 'realisations' in liste:
                 categorie[int(m.group(1))] = 'realisation'
+        # chaque carte <article> contient la photo (data-src) et le lien de l'article
+        for bloc in page_liste.split('<article')[1:]:
+            lien = re.search(r'/fr/news/(\d+)_', bloc)
+            img = re.search(r'data-src="([^"]+\.(?:jpe?g|png|webp))"', bloc, re.I)
+            if lien and img:
+                u = img.group(1)
+                images[int(lien.group(1))] = u if u.startswith('http') else SITE + u
     if not articles:
         raise RuntimeError('aucune actualité trouvée')
     nid = max(articles)
@@ -59,7 +68,30 @@ def derniere_news():
         if n and 1 <= int(n.group(2)) <= 12:
             noms = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
             date = f'{int(n.group(1))} {noms[int(n.group(2))-1]} {n.group(3)}'
-    return nid, titre or 'Découvrez nos dernières actualités', date, categorie.get(nid, 'actualite')
+    return nid, titre or 'Découvrez nos dernières actualités', date, categorie.get(nid, 'actualite'), images.get(nid)
+
+
+IMAGE_ARTICLE = None   # photo de l'article, si on a pu la récupérer
+
+
+def telecharger_image(url):
+    try:
+        r = requests.get(url, headers=UA, timeout=30)
+        r.raise_for_status()
+        open('image-article.tmp', 'wb').write(r.content)
+        im = Image.open('image-article.tmp'); im.load()
+        if min(im.size) < 200:
+            return None
+        return 'image-article.tmp'
+    except Exception as e:
+        print('Image de l’article indisponible :', e)
+        return None
+
+
+def choisir_photo(nid, photos):
+    if IMAGE_ARTICLE:
+        return IMAGE_ARTICLE
+    return photos[nid % len(photos)] if photos else None
 
 
 def ecrire_lien(cat):
@@ -105,8 +137,9 @@ def generer(nid, titre, date, cat='actualite'):
     photos = sorted(glob.glob('photo-*.jpg') + glob.glob('photo-*.jpeg') + glob.glob('photo-*.png'))
     ph_h = H - BAND
     img = Image.new('RGB', (W, H), NAVY)
-    if photos:  # une photo différente selon la news
-        ph = ImageOps.exif_transpose(Image.open(photos[nid % len(photos)])).convert('RGB')
+    src = choisir_photo(nid, photos)
+    if src:  # photo de l'article, sinon une photo du dépôt
+        ph = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
         ratio = W / ph_h
         if ph.width / ph.height > ratio:
             cw = int(ph.height * ratio); x0 = (ph.width - cw) // 2
@@ -197,8 +230,9 @@ def generer_compact(nid, titre, date, cat='actualite', sortie='banniere-cote.jpg
     photos = sorted(glob.glob('photo-*.jpg') + glob.glob('photo-*.jpeg') + glob.glob('photo-*.png'))
     ph_h = CH - CB
     img = Image.new('RGB', (CW, CH), NAVY)
-    if photos:
-        ph = ImageOps.exif_transpose(Image.open(photos[nid % len(photos)])).convert('RGB')
+    src = choisir_photo(nid, photos)
+    if src:
+        ph = ImageOps.exif_transpose(Image.open(src)).convert('RGB')
         ratio = CW / ph_h
         if ph.width / ph.height > ratio:
             cw = int(ph.height * ratio); x0 = (ph.width - cw) // 2
@@ -284,11 +318,13 @@ if __name__ == '__main__':
         generer_compact(1, sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
         sys.exit(0)
     try:
-        nid, titre, date, cat = derniere_news()
+        nid, titre, date, cat, url_img = derniere_news()
     except Exception as e:          # site injoignable : on garde l'ancienne bannière
         print('Pas de mise à jour :', e)
         sys.exit(0)
-    print('Dernière news :', nid, cat, titre, date)
+    print('Dernière news :', nid, cat, titre, date, url_img)
+    if url_img:
+        IMAGE_ARTICLE = telecharger_image(url_img)
     generer(nid, titre, date, cat)
     generer_compact(nid, titre, date, cat)
     ecrire_lien(cat)
