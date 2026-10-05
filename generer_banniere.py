@@ -29,9 +29,12 @@ def get(url):
 
 def derniere_news():
     articles = {}
+    categorie = {}
     for liste in LISTES:
         for m in re.finditer(r'/fr/news/(\d+)_([a-z0-9\-]+)', get(SITE + liste)):
             articles[int(m.group(1))] = f'{SITE}/fr/news/{m.group(1)}_{m.group(2)}'
+            if 'realisations' in liste:
+                categorie[int(m.group(1))] = 'realisation'
     if not articles:
         raise RuntimeError('aucune actualité trouvée')
     nid = max(articles)
@@ -50,7 +53,12 @@ def derniere_news():
     texte = re.sub(r'<[^>]+>', ' ', page)
     d = re.search(rf'\b(\d{{1,2}})\s+({MOIS})\s+(20\d\d)\b', texte, re.I)
     date = f'{d.group(1)} {d.group(2).lower()} {d.group(3)}' if d else None
-    return nid, titre or 'Découvrez nos dernières actualités', date
+    if not date:
+        n = re.search(r'\b(\d{1,2})[/.](\d{1,2})[/.](20\d\d)\b', texte)
+        if n and 1 <= int(n.group(2)) <= 12:
+            noms = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
+            date = f'{int(n.group(1))} {noms[int(n.group(2))-1]} {n.group(3)}'
+    return nid, titre or 'Découvrez nos dernières actualités', date, categorie.get(nid, 'actualite')
 
 
 def font(path, size, weight=None):
@@ -78,7 +86,7 @@ def couper(d, texte, f, largeur):
     return lignes
 
 
-def generer(nid, titre, date):
+def generer(nid, titre, date, cat='actualite'):
     photos = sorted(glob.glob('photo-*.jpg') + glob.glob('photo-*.jpeg') + glob.glob('photo-*.png'))
     ph_h = H - BAND
     img = Image.new('RGB', (W, H), NAVY)
@@ -127,7 +135,7 @@ def generer(nid, titre, date):
     d.line((tx, 188 * S, tx + 160 * S, 188 * S), fill=(200, 205, 215), width=S)
     sf = font(POP_R, 11 * S)
     xx = tx
-    for c in 'NOTRE DERNIÈRE ACTUALITÉ':
+    for c in ('NOTRE DERNIÈRE RÉALISATION' if cat == 'realisation' else 'NOTRE DERNIÈRE ACTUALITÉ'):
         d.text((xx, 208 * S), c, font=sf, fill='white', anchor='ls')
         xx += d.textlength(c, font=sf) + 3.2 * S
 
@@ -149,7 +157,11 @@ def generer(nid, titre, date):
                 d.rectangle((px, py, px + 2*S, py + 2*S), fill='white')
         d.text((52 * S, my), date.capitalize(), font=bf, fill='white', anchor='lm')
     else:
-        d.text((24 * S, my), 'Lire l’actualité  →', font=bf, fill='white', anchor='lm')
+        lib = 'Découvrir le projet' if cat == 'realisation' else 'Lire l’actualité'
+        d.text((24 * S, my), lib, font=bf, fill='white', anchor='lm')
+        ax = 24 * S + d.textlength(lib, font=bf) + 10 * S
+        d.line((ax, my, ax + 16 * S, my), fill='white', width=2 * S)
+        d.polygon([(ax + 18 * S, my), (ax + 11 * S, my - 5 * S), (ax + 11 * S, my + 5 * S)], fill='white')
     d.text((W // 2, my), 'www.mecalab.be', font=bf, fill='white', anchor='mm')
     loc = 'Villers-le-Bouillet'
     lx = W - 24 * S - d.textlength(loc, font=bf)
@@ -168,9 +180,9 @@ if __name__ == '__main__':
         generer(1, sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
         sys.exit(0)
     try:
-        nid, titre, date = derniere_news()
+        nid, titre, date, cat = derniere_news()
     except Exception as e:          # site injoignable : on garde l'ancienne bannière
         print('Pas de mise à jour :', e)
         sys.exit(0)
-    print('Dernière news :', nid, titre, date)
-    generer(nid, titre, date)
+    print('Dernière news :', nid, cat, titre, date)
+    generer(nid, titre, date, cat)
