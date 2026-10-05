@@ -1,0 +1,23 @@
+== liens CSS / polices dans la page ==
+href="/Instances/Front/Corporate/Dist/app.c6395d7d2a2d64944c6c.css"
+href="https://fonts.googleapis.com"
+href="https://fonts.googleapis.com/css2?family=Fustat:wght@400;500;700&display=swap"
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Roboto:wght@400;500&display=swap"
+href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;700;800&display=swap"
+href="https://fonts.gstatic.com"
+== font-family dans la page ==
+== CSS https://www.mecalab.be/Instances/Front/Corporate/Dist/app.c6395d7d2a2d64944c6c.css ==
+      5 font-family:Fustat,sans-serif
+      2 font-family:Glyphicons Halflings
+      2 font-family:FontAwesome
+      1 font-family:serif
+      1 font-family:sans-serif
+      1 font-family:monospace,monospace
+      1 font-family:inherit
+      1 font-family:Helvetica Neue,Helvetica,Arial,sans-serif
+url(fonts/fontawesome-webfont.ttf)
+url(fonts/fontawesome-webfont.woff)
+url(fonts/fontawesome-webfont.woff2)
+url(fonts/glyphicons-halflings-regular.ttf)
+url(fonts/glyphicons-halflings-regular.woff)
+url(fonts/glyphicons-halflings-regular.woff2)
