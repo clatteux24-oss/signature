@@ -61,6 +61,20 @@ def derniere_news():
     return nid, titre or 'Découvrez nos dernières actualités', date, categorie.get(nid, 'actualite')
 
 
+def ecrire_lien(cat):
+    cible = SITE + ('/fr/news/cat3_realisations' if cat == 'realisation' else '/fr/news/cat1_actualites')
+    open('lien.html', 'w', encoding='utf-8').write(f'''<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url={cible}">
+<link rel="canonical" href="{cible}">
+<title>Mecalab</title>
+<script>location.replace("{cible}");</script>
+</head><body style="font-family:Arial,sans-serif">
+<p>Redirection vers <a href="{cible}">{cible}</a>…</p>
+</body></html>
+''')
+
+
 def font(path, size, weight=None):
     f = ImageFont.truetype(path, size)
     if weight:
@@ -186,3 +200,4 @@ if __name__ == '__main__':
         sys.exit(0)
     print('Dernière news :', nid, cat, titre, date)
     generer(nid, titre, date, cat)
+    ecrire_lien(cat)
