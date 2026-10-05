@@ -10,9 +10,10 @@ LISTES = ['/fr/news/cat1_actualites', '/fr/news/cat3_realisations']
 UA = {'User-Agent': 'Mozilla/5.0 (signature Mecalab)'}
 MOIS = 'janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre'
 
-LORA = 'fonts/Lora.ttf'
-POP_R = 'fonts/Poppins-Regular.ttf'
-POP_M = 'fonts/Poppins-Medium.ttf'
+# Police du site mecalab.be : Source Sans 3 (ex-Source Sans Pro)
+TITRE = 'fonts/SourceSans3-700.ttf'
+SS_R = 'fonts/SourceSans3-400.ttf'
+SS_SB = 'fonts/SourceSans3-600.ttf'
 
 S = 2
 W, H = 600 * S, 280 * S
@@ -134,10 +135,11 @@ def generer(nid, titre, date, cat='actualite'):
 
     # titre serif (taille adaptée à la longueur)
     tx, larg = 24 * S, 350 * S
-    for taille in (26, 23, 20, 18, 16):
-        tf = font(LORA, taille * S, 600)
+    for taille in (31, 28, 25, 22, 19):
+        tf = font(TITRE, taille * S)
         lignes = couper(d, titre, tf, larg)
-        if len(lignes) <= 3:
+        haut = 176 * S - int(taille * 1.22) * S * (len(lignes) - 1) - taille * S
+        if len(lignes) <= 3 and haut >= 98 * S:   # ne pas toucher le logo
             break
     lignes = lignes[:3]
     pas = int(taille * 1.22) * S
@@ -147,7 +149,7 @@ def generer(nid, titre, date, cat='actualite'):
         d.text((tx, y), l, font=tf, fill='white', anchor='ls')
         y += pas
     d.line((tx, 188 * S, tx + 160 * S, 188 * S), fill=(200, 205, 215), width=S)
-    sf = font(POP_R, 11 * S)
+    sf = font(SS_SB, 12 * S)
     xx = tx
     for c in ('NOTRE DERNIÈRE RÉALISATION' if cat == 'realisation' else 'NOTRE DERNIÈRE ACTUALITÉ'):
         d.text((xx, 208 * S), c, font=sf, fill='white', anchor='ls')
@@ -156,7 +158,7 @@ def generer(nid, titre, date, cat='actualite'):
     # bande bleue + icônes
     by = H - BAND
     d.rectangle((0, by, W, H), fill=BLUE)
-    bf = font(POP_M, 12 * S)
+    bf = font(SS_SB, 14 * S)
     my = by + BAND // 2
     w = 2 * S
     if date:
@@ -221,10 +223,11 @@ def generer_compact(nid, titre, date, cat='actualite', sortie='banniere-cote.jpg
     img.paste(logo, (cx + (D - lw) // 2, cy + (D - logo.height) // 2), logo)
 
     tx, larg = 16 * S, 250 * S
-    for taille in (18, 16, 14, 13, 12):
-        tf = font(LORA, taille * S, 600)
+    for taille in (22, 20, 18, 16, 14):
+        tf = font(TITRE, taille * S)
         lignes = couper(d, titre, tf, larg)
-        if len(lignes) <= 3:
+        haut = 122 * S - int(taille * 1.22 * S) * (len(lignes) - 1) - taille * S
+        if len(lignes) <= 3 and haut >= 68 * S:   # ne pas toucher le logo
             break
     lignes = lignes[:3]
     pas = int(taille * 1.22 * S)
@@ -233,7 +236,7 @@ def generer_compact(nid, titre, date, cat='actualite', sortie='banniere-cote.jpg
         d.text((tx, y), l, font=tf, fill='white', anchor='ls')
         y += pas
     d.line((tx, 132 * S, tx + 110 * S, 132 * S), fill=(200, 205, 215), width=S)
-    sf = font(POP_R, 8 * S)
+    sf = font(SS_SB, 9 * S)
     xx = tx
     for c in ('NOTRE DERNIÈRE RÉALISATION' if cat == 'realisation' else 'NOTRE DERNIÈRE ACTUALITÉ'):
         d.text((xx, 151 * S), c, font=sf, fill='white', anchor='ls')
@@ -241,7 +244,7 @@ def generer_compact(nid, titre, date, cat='actualite', sortie='banniere-cote.jpg
 
     by = CH - CB
     d.rectangle((0, by, CW, CH), fill=BLUE)
-    bf = font(POP_M, 10 * S)
+    bf = font(SS_SB, 12 * S)
     my = by + CB // 2
     w = int(1.6 * S)
     k = 0.75

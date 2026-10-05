@@ -21,13 +21,6 @@ jobs:
       - name: Installer les outils
         run: pip install pillow numpy requests
 
-      - name: Télécharger les polices
-        run: |
-          mkdir -p fonts
-          curl -fsSL -o fonts/Lora.ttf "https://github.com/google/fonts/raw/main/ofl/lora/Lora%5Bwght%5D.ttf"
-          curl -fsSL -o fonts/Poppins-Regular.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Regular.ttf"
-          curl -fsSL -o fonts/Poppins-Medium.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/Poppins-Medium.ttf"
-
       - name: Générer la bannière
         run: python generer_banniere.py
 
