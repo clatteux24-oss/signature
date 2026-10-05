@@ -189,9 +189,96 @@ def generer(nid, titre, date, cat='actualite'):
     img.save('banniere.jpg', quality=86, optimize=True, progressive=True)
 
 
+def generer_compact(nid, titre, date, cat='actualite', sortie='banniere-cote.jpg'):
+    """Version compacte (380 x 210 px) à placer à droite des coordonnées."""
+    CW, CH, CB = 380 * S, 210 * S, 36 * S
+    photos = sorted(glob.glob('photo-*.jpg') + glob.glob('photo-*.jpeg') + glob.glob('photo-*.png'))
+    ph_h = CH - CB
+    img = Image.new('RGB', (CW, CH), NAVY)
+    if photos:
+        ph = ImageOps.exif_transpose(Image.open(photos[nid % len(photos)])).convert('RGB')
+        ratio = CW / ph_h
+        if ph.width / ph.height > ratio:
+            cw = int(ph.height * ratio); x0 = (ph.width - cw) // 2
+            ph = ph.crop((x0, 0, x0 + cw, ph.height))
+        else:
+            ch = int(ph.width / ratio); y0 = int((ph.height - ch) * 0.45)
+            ph = ph.crop((0, y0, ph.width, y0 + ch))
+        img.paste(ph.resize((CW, ph_h), Image.LANCZOS), (0, 0))
+    x = np.linspace(0, 1, CW)
+    a = np.tile(0.93 - 0.62 * np.clip((x - 0.30) / 0.45, 0, 1), (ph_h, 1))[..., None]
+    base = np.array(img.crop((0, 0, CW, ph_h))).astype(float)
+    img.paste(Image.fromarray((base * (1 - a) + np.array(NAVY, float) * a).astype('uint8')), (0, 0))
+    d = ImageDraw.Draw(img)
+
+    D, cx, cy = 50 * S, 14 * S, 12 * S
+    m = Image.new('L', (D * 4, D * 4), 0)
+    ImageDraw.Draw(m).ellipse((0, 0, D * 4 - 1, D * 4 - 1), fill=255)
+    img.paste(Image.new('RGB', (D, D), 'white'), (cx, cy), m.resize((D, D), Image.LANCZOS))
+    logo = Image.open('logo-mecalab.png').convert('RGBA')
+    lw = int(D * 0.82)
+    logo = logo.resize((lw, int(logo.height * lw / logo.width)), Image.LANCZOS)
+    img.paste(logo, (cx + (D - lw) // 2, cy + (D - logo.height) // 2), logo)
+
+    tx, larg = 16 * S, 250 * S
+    for taille in (18, 16, 14, 13, 12):
+        tf = font(LORA, taille * S, 600)
+        lignes = couper(d, titre, tf, larg)
+        if len(lignes) <= 3:
+            break
+    lignes = lignes[:3]
+    pas = int(taille * 1.22 * S)
+    y = 122 * S - pas * (len(lignes) - 1)
+    for l in lignes:
+        d.text((tx, y), l, font=tf, fill='white', anchor='ls')
+        y += pas
+    d.line((tx, 132 * S, tx + 110 * S, 132 * S), fill=(200, 205, 215), width=S)
+    sf = font(POP_R, 8 * S)
+    xx = tx
+    for c in ('NOTRE DERNIÈRE RÉALISATION' if cat == 'realisation' else 'NOTRE DERNIÈRE ACTUALITÉ'):
+        d.text((xx, 151 * S), c, font=sf, fill='white', anchor='ls')
+        xx += d.textlength(c, font=sf) + 2.2 * S
+
+    by = CH - CB
+    d.rectangle((0, by, CW, CH), fill=BLUE)
+    bf = font(POP_M, 10 * S)
+    my = by + CB // 2
+    w = int(1.6 * S)
+    k = 0.75
+    if date:
+        x0, y0 = 16 * S, my - 8 * S
+        q = lambda v: int(v * k * S)
+        d.rounded_rectangle((x0, y0 + q(3), x0 + q(20), y0 + q(21)), radius=q(3), outline='white', width=w)
+        d.line((x0, y0 + q(8), x0 + q(20), y0 + q(8)), fill='white', width=w)
+        for kk in (5, 15):
+            d.line((x0 + q(kk), y0, x0 + q(kk), y0 + q(5)), fill='white', width=w)
+        for r in range(2):
+            for c in range(3):
+                px, py = x0 + q(4 + c * 5), y0 + q(11 + r * 5)
+                d.rectangle((px, py, px + q(2), py + q(2)), fill='white')
+        d.text((38 * S, my), date.capitalize(), font=bf, fill='white', anchor='lm')
+    else:
+        lib = 'Découvrir le projet' if cat == 'realisation' else 'Lire l’actualité'
+        d.text((16 * S, my), lib, font=bf, fill='white', anchor='lm')
+        ax = 16 * S + d.textlength(lib, font=bf) + 8 * S
+        d.line((ax, my, ax + 12 * S, my), fill='white', width=w)
+        d.polygon([(ax + 14 * S, my), (ax + 8 * S, my - 4 * S), (ax + 8 * S, my + 4 * S)], fill='white')
+    loc = 'Villers-le-Bouillet'
+    lx = CW - 16 * S - d.textlength(loc, font=bf)
+    x0, y0 = lx - 20 * S, my - 8 * S
+    q = lambda v: int(v * k * S)
+    d.ellipse((x0 + q(2), y0, x0 + q(18), y0 + q(16)), outline='white', width=w)
+    d.polygon([(x0 + q(4), y0 + q(12)), (x0 + q(16), y0 + q(12)), (x0 + q(10), y0 + q(22))], fill='white')
+    d.ellipse((x0 + q(3) + 1, y0 + q(1) + 1, x0 + q(17) - 1, y0 + q(15) - 1), fill=BLUE)
+    d.ellipse((x0 + q(7), y0 + q(5), x0 + q(13), y0 + q(11)), outline='white', width=w)
+    d.text((lx, my), loc, font=bf, fill='white', anchor='lm')
+    img.save(sortie, quality=88, optimize=True, progressive=True)
+
+
 if __name__ == '__main__':
     if len(sys.argv) > 1:          # test manuel : python generer_banniere.py "Titre" "16 juillet 2026"
         generer(1, sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
+        generer_compact(1, sys.argv[1], sys.argv[2] if len(sys.argv) > 2 else None)
         sys.exit(0)
     try:
         nid, titre, date, cat = derniere_news()
@@ -200,4 +287,5 @@ if __name__ == '__main__':
         sys.exit(0)
     print('Dernière news :', nid, cat, titre, date)
     generer(nid, titre, date, cat)
+    generer_compact(nid, titre, date, cat)
     ecrire_lien(cat)
