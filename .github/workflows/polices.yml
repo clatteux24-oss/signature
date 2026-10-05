@@ -1,0 +1,31 @@
+name: Détecter les polices du site
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  polices:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lire le site et ses CSS
+        run: |
+          UA="Mozilla/5.0"
+          curl -fsSL -A "$UA" https://www.mecalab.be/fr -o page.html
+          {
+            echo "== liens CSS / polices dans la page =="
+            grep -oiE '(href|src)="[^"]*"' page.html | grep -iE 'css|font|woff|typekit|googleapis' | sort -u
+            echo "== font-family dans la page =="
+            grep -oiE 'font-family:[^;"}]*' page.html | sort | uniq -c | sort -rn
+            for u in $(grep -oiE 'href="[^"]*\.css[^"]*"' page.html | sed -E 's/href="([^"]*)"/\1/' | sort -u); do
+              case "$u" in http*) url="$u";; //*) url="https:$u";; /*) url="https://www.mecalab.be$u";; *) url="https://www.mecalab.be/$u";; esac
+              echo "== CSS $url =="
+              curl -fsSL -A "$UA" "$url" -o f.css || continue
+              grep -oiE 'font-family:[^;}]*' f.css | sort | uniq -c | sort -rn | head -15
+              grep -oiE '@import[^;]*|url\([^)]*\.(woff2?|ttf|otf)[^)]*\)' f.css | sort -u | head -20
+            done
+          } > polices.txt 2>&1
+          cat polices.txt
+      - name: Enregistrer
+        run: |
+          git config user.name "banniere-bot"; git config user.email "banniere-bot@users.noreply.github.com"
+          git add polices.txt; git commit -m "Polices du site (temporaire)"; git push
