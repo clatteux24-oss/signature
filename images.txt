@@ -1,0 +1,161 @@
+===== LISTE /fr/news/cat3_realisations =====
+<a class="stretched-link" href="/fr/news/34_etageres-mecano-soudees-sur-roulettes-pour-salles-process"
+<a class="stretched-link" href="/fr/news/33_habillage-inox-en-zone-sterile-la-finition-au-service-de-la-nettoyabilite"
+<a class="stretched-link" href="/fr/news/30_clean-piping-role-et-impact-dans-lindustrie-pharmaceutique-et-biotechnologique"
+<a class="stretched-link" href="/fr/news/27_cuve-process-inox-316l-de-15-m-pour-lindustrie-agroalimentaire"
+<a class="stretched-link" href="/fr/news/18_melangeurs-statiques-en-inox-3d-pour-la-chimie"
+-- images (src / data-src / background) --
+src="https://www.googletagmanager.com/ns.html?id=GTM-MS27BRFN"
+src="/assets/cache/e900c399-8889-4018-8f8a-b558d190dd48/design-sans-titre-9.png"
+data-src="/assets/cache/85a7d258-316a-4aaa-917a-2b3616a53088/mecalab-etageres-mecano-soudees-sur-mesure-4.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/960cc662-5728-4c89-a13d-5db75e173eb5/habillage-inox-zone-sterile-mecalab.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/fe172fb5-89e9-45ae-baca-1e1f21a5fb6d/clean-piping-wfi-skid-tuyauterie-haute-purete-mecalab.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/0f9e2ce9-4fd3-4468-abd3-a233414e30ed/cuve-process-inox-316l-15m-agroalimentaire-mecalab.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/db4a31da-dad6-465f-9cdd-92bb3b6b7727/20250714-094656.jpg"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/9827283b-22ad-42f8-a2ef-af0a2c97713b/ressuage-radio.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/575e7973-1b68-43cb-a484-49826fba88ca/design-sans-titre.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/2e68564b-9e3e-4e10-9c56-c7afa3b14807/20240919-111442.jpg"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/54bd59ff-6240-4115-bbd0-7174ca59def0/shutterstock-2498910375.jpg"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+src="/assets/4b504d68-c8d0-4dc5-b0c5-1117e30af68c/200x200/VCA.png"
+src="/assets/66587800-8c38-420b-b022-d2712629d539/200x200/SGS_ISO_9001_FR_TCL_HR.jpg"
+src="/Instances/Front/Corporate/Dist/app.9068b121.js"
+-- extrait autour du 1er article --
+<a class="stretched-link" href="/fr/news/34_etageres-mecano-soudees-sur-roulettes-pour-salles-process">En savoir plus</a>
+<svg class="icon-text text-thin-2 text-2">
+
+<use xlink:href="/Instances/Front/Corporate/Images/sprite.svg#arrow-right" /></svg>
+</a>
+</div>
+</div>
+</article>
+
+<article class="post-item post-item--masonry card hover-img flex-rows-align">
+
+<figure class="card__img img-fit hover-img__elm">
+<img alt="" class="lazy" data-src="/assets/cache/960cc662-5728-4c89-a13d-5db75e173eb5/habillage-inox-zone-sterile-mecalab.png" height="400" itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAA
+</figure>
+
+<div class="card__body stack-text">
+<div class="stack-text stack-text--2">
+<span class="h4 text-3">Habillage inox en zone st&#233;rile : la finition au service de la nettoyabilit&#233;</span>
+<p class="lh-formatted text-2">Mecalab a conçu, fabriqué et installé des habillages inox sur des hottes existantes afin de refermer les zones ouvertes, de limiter les espaces susceptibles de devenir des points de rét
+</div>
+
+<div class="text-2 learn-more text-thirdy">
+<a class="stretched-link" href="/fr/news/33_habillage-inox-en-zone-sterile-la-finition-au-service-de-la-nettoyabilite">En savoir plus</a>
+<svg class="icon-text text-thin-2 text-2">
+
+<use xlink:href="/Instances/Front/Corporate/Images/sprite.svg#arrow-right" /></svg>
+</a>
+</div>
+</div>
+</article>
+
+<article class="post-item post-item--masonry card hover-img flex-rows-align">
+
+<figure class="card__img img-fit hover-img__elm">
+<img alt="" class="lazy" data-src="/assets/cache/fe172fb5-89e9-45ae-baca-1e1f21a5fb6d/clean-piping-wfi-skid-tuyauterie-haute-purete-mecalab.png" height="600" itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAIAAAA
+</figure>
+
+<div class="card__body stack-text">
+<div class="stack-text stack-text--2">
+<span class="h4 text-3">Clean Piping : r&#244;le et impact dans l’industrie pharmaceutique et biotechnologique</span>
+===== LISTE /fr/news/cat1_actualites =====
+<a class="stretched-link" href="/fr/news/32_mecalab-obtient-la-medaille-dor-ecovadis-2026"
+<a class="stretched-link" href="/fr/news/31_deux-panneaux-dhumidification-de-gaz-concus-et-qualifies-par-mecalab-pour-lindustrie-de-haute-techno"
+<a class="stretched-link" href="/fr/news/29_tuyauterie-industrielle-haute-precision-mecalab-votre-partenaire-de-confiance"
+<a class="stretched-link" href="/fr/news/28_mecalab-certifie-vca-une-reference-en-securite-sur-chantier"
+<a class="stretched-link" href="/fr/news/26_mecalab-certifie-iso-9001-qualite-confirmee"
+-- images (src / data-src / background) --
+src="https://www.googletagmanager.com/ns.html?id=GTM-MS27BRFN"
+src="/assets/cache/e900c399-8889-4018-8f8a-b558d190dd48/design-sans-titre-9.png"
+data-src="/assets/cache/04dacd8e-4830-4e8f-a1c8-38df80c7211e/mecalab-obtient-la-medaille-dor-ecovadis-2028.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/d32bbb1e-e93b-4ac3-b0ab-a1bba0e00758/panneau-humidification-gaz-high-tech-mecalab.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/7734d582-3778-4aae-9216-0d7e62a1b734/tuyauterie-inox-haute-precision-pharma.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/65ba2059-61db-481e-a6c2-83255cf2b18f/mecalab-certifie-vca.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/0dae295a-b727-473e-a3af-91c2c4462e7f/mecalab-certifie-iso-9001.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/d9aa1bc7-1bb9-4301-a588-b3736aee009d/ressuage-radio.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/bbc92637-d332-496c-b23b-c465da4bfa1c/nvl-an-mecalab-news.png"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/93f24b30-fa6f-41bc-b6b9-73875ab74862/shutterstock-1421527028-scaled.jpg"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+data-src="/assets/cache/6d47bc8c-ba0f-4e80-af89-e6a653b7fc3e/shutterstock-1857429718.jpg"
+src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+src="/assets/4b504d68-c8d0-4dc5-b0c5-1117e30af68c/200x200/VCA.png"
+src="/assets/66587800-8c38-420b-b022-d2712629d539/200x200/SGS_ISO_9001_FR_TCL_HR.jpg"
+src="/Instances/Front/Corporate/Dist/app.9068b121.js"
+-- extrait autour du 1er article --
+<a class="stretched-link" href="/fr/news/32_mecalab-obtient-la-medaille-dor-ecovadis-2026">En savoir plus</a>
+<svg class="icon-text text-thin-2 text-2">
+
+<use xlink:href="/Instances/Front/Corporate/Images/sprite.svg#arrow-right" /></svg>
+</a>
+</div>
+</div>
+</article>
+
+<article class="post-item post-item--masonry card hover-img flex-rows-align">
+
+<figure class="card__img img-fit hover-img__elm">
+<img alt="" class="lazy" data-src="/assets/cache/d32bbb1e-e93b-4ac3-b0ab-a1bba0e00758/panneau-humidification-gaz-high-tech-mecalab.png" height="600" itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH
+</figure>
+
+<div class="card__body stack-text">
+<div class="stack-text stack-text--2">
+<span class="h4 text-3">Deux panneaux d&#39;humidification de gaz con&#231;us et qualifi&#233;s par Mecalab pour l&#39;industrie de haute technologie</span>
+<p class="lh-formatted text-2">Mecalab a conçu et assemblé deux panneaux d'humidification de gaz destinés à l'industrie de haute technologie. De l'étude au conditionnement maritime SEI4-VCI, chaque étape (soudure, 
+</div>
+
+<div class="text-2 learn-more text-thirdy">
+<a class="stretched-link" href="/fr/news/31_deux-panneaux-dhumidification-de-gaz-concus-et-qualifies-par-mecalab-pour-lindustrie-de-haute-techno">En savoir plus</a>
+<svg class="icon-text text-thin-2 text-2">
+
+<use xlink:href="/Instances/Front/Corporate/Images/sprite.svg#arrow-right" /></svg>
+</a>
+</div>
+</div>
+</article>
+
+<article class="post-item post-item--masonry card hover-img flex-rows-align">
+
+<figure class="card__img img-fit hover-img__elm">
+<img alt="" class="lazy" data-src="/assets/cache/7734d582-3778-4aae-9216-0d7e62a1b734/tuyauterie-inox-haute-precision-pharma.png" height="600" itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAA
+</figure>
+
+<div class="card__body stack-text">
+<div class="stack-text stack-text--2">
+<span class="h4 text-3">Tuyauterie industrielle haute pr&#233;cision : Mecalab, votre partenaire de confiance</span>
+===== ARTICLE /fr/news/14_cuve-sur-chassis-mobile-pour-le-secteur-alimentaire =====
+<meta property="og:image" content="https://www.mecalab.be/assets/2bcf7174-6f3a-45e6-b4d0-4bf79b41ac7e/logo-mecalab.png" />
+src="/assets/cache/e900c399-8889-4018-8f8a-b558d190dd48/design-sans-titre-9.png"
+data-src="/assets/cache/dfc854d4-f620-4159-a717-6273c8f827e7/design-sans-titre.png"
+src="/assets/4b504d68-c8d0-4dc5-b0c5-1117e30af68c/200x200/VCA.png"
+src="/assets/66587800-8c38-420b-b022-d2712629d539/200x200/SGS_ISO_9001_FR_TCL_HR.jpg"
+===== ARTICLE /fr/news/18_melangeurs-statiques-en-inox-3d-pour-la-chimie =====
+<meta property="og:image" content="https://www.mecalab.be/assets/2bcf7174-6f3a-45e6-b4d0-4bf79b41ac7e/logo-mecalab.png" />
+src="/assets/cache/e900c399-8889-4018-8f8a-b558d190dd48/design-sans-titre-9.png"
+data-src="/assets/cache/fe6559a5-d2b1-474a-8d3b-48d6a6f7241a/20250715-083813.jpg"
+src="/assets/4b504d68-c8d0-4dc5-b0c5-1117e30af68c/200x200/VCA.png"
+src="/assets/66587800-8c38-420b-b022-d2712629d539/200x200/SGS_ISO_9001_FR_TCL_HR.jpg"
+===== ARTICLE /fr/news/32_mecalab-obtient-la-medaille-dor-ecovadis-2026 =====
+<meta property="og:image" content="https://www.mecalab.be/assets/2bcf7174-6f3a-45e6-b4d0-4bf79b41ac7e/logo-mecalab.png" />
+src="/assets/cache/e900c399-8889-4018-8f8a-b558d190dd48/design-sans-titre-9.png"
+data-src="/assets/cache/e8cb44b4-4638-4aee-89fa-47cb0bb16b7d/mecalab-obtient-la-medaille-dor-ecovadis-2028.png"
+src="/assets/4b504d68-c8d0-4dc5-b0c5-1117e30af68c/200x200/VCA.png"
+src="/assets/66587800-8c38-420b-b022-d2712629d539/200x200/SGS_ISO_9001_FR_TCL_HR.jpg"
